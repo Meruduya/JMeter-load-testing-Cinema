@@ -1,0 +1,25 @@
+2022-01-23 15:23:20,623 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2022-01-23 15:23:20,645 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.4.3/libexec/bin/user.properties
+2022-01-23 15:23:20,646 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.4.3/libexec/bin/system.properties
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: Copyright (c) 1998-2021 The Apache Software Foundation
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: Version 5.4.3
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: java.version=17.0.1
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: os.name=Mac OS X
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: os.arch=aarch64
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: os.version=12.0
+2022-01-23 15:23:20,649 INFO o.a.j.JMeter: file.encoding=UTF-8
+2022-01-23 15:23:20,650 INFO o.a.j.JMeter: java.awt.headless=null
+2022-01-23 15:23:20,650 INFO o.a.j.JMeter: Max memory     =1073741824
+2022-01-23 15:23:20,650 INFO o.a.j.JMeter: Available Processors =10
+2022-01-23 15:23:20,656 INFO o.a.j.JMeter: Default Locale=English (EN)
+2022-01-23 15:23:20,656 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2022-01-23 15:23:20,656 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.4.3/libexec
+2022-01-23 15:23:20,656 INFO o.a.j.JMeter: user.dir  =/opt/develop/congenial-potato/wp
+2022-01-23 15:23:20,656 INFO o.a.j.JMeter: PWD       =/opt/develop/congenial-potato/wp
+2022-01-23 15:23:20,658 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: mvsmac.local FullName: localhost
+2022-01-23 15:23:20,971 INFO o.a.j.JMeter: Setting LAF to: laf:com.apple.laf.AquaLookAndFeel
+2022-01-23 15:23:21,477 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2022-01-23 15:23:22,089 INFO o.j.r.JARSourceHTTP: Requesting https://jmeter-plugins.org/repo/?installID=mac_os_x-bc80ca3a610d702eb09f901a49994f9b-gui
+2022-01-23 15:23:23,663 INFO o.j.r.PluginManager: Plugins Status: [jpgc-graphs-basic=2.0, jpgc-graphs-additional=2.0, jpgc-autostop=0.1, jpgc-csl=0.1, jpgc-casutg=2.10, jpgc-graphs-dist=2.0, jpgc-graphs-vs=2.0, jpgc-plugins-manager=1.7, jpgc-csvars=0.1, jmeter-core=5.4.3, jmeter-ftp=5.4.3, jmeter-http=5.4.3, jmeter-jdbc=5.4.3, jmeter-jms=5.4.3, jmeter-junit=5.4.3, jmeter-java=5.4.3, jmeter-ldap=5.4.3, jmeter-mail=5.4.3, jmeter-mongodb=5.4.3, jmeter-native=5.4.3, jmeter-tcp=5.4.3, jmeter-components=5.4.3]
+2022-01-23 15:23:25,242 INFO o.a.j.g.a.t.TemplateManager: Reading templates from: /opt/homebrew/Cellar/jmeter/5.4.3/libexec/bin/templates/templates.xml

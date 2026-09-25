@@ -1,43 +1,59 @@
-# Проект для нагрузочного тестирования
-Сайт для проведения тестирования производительности предоставлен https://github.com/Evgeniy-Varlamov/FS21-diplom
+# JMeter load testing
 
-# Запуск проекта
-## Предварительные условия
-На компьютере должено быть установлено следующее ПО:
-1. docker -  Скачать и установить можно с помощью официального сайта https://www.docker.com/get-started
-2. docker-compose -  Скачать и установить можно с помощью официального сайта https://docs.docker.com/compose/install/
-3. git - Скачать и установить можно с помощью официального сайта https://git-scm.com/book/ru/v2/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-Git
+Учебный проект по нагрузочному тестированию в Apache JMeter.
 
-## Установка репозитория на компьютер
-    git clone https://github.com/mshegolev/congenial-potato.git
-    cd congenial-potato
-## Запуск проекта, параметр -d запускает контейнеры в режиме сервиса 
-    cd cinema
-    docker-compose up -d
-## Остановка проекта
-    cd cinema
-    docker-compose down
+**Stack:** `Apache JMeter` · `Docker Compose` · `MySQL / MariaDB` · `CSV test data`
 
-После запуска 3 контейнеров можно перейти на сайт в барузере по адресу http://localhost:8000
-Для доступа к панели администратоар сайта http://localhost:8000/admin
-Для доступа к phpadmin http://localhost:8081
+## Содержание репозитория
 
-# Часто задаваемые вопросы:
-##### Пытаюсь запустить на localhost приложение для тестирования. Но оно не запускается. Выполнила как сказано в задании - git clone https://github.com/mshegolev/congenial-potato.git,
-1. Убедиться что все контейнеры запущены выполнив команду docker ps. Если нет или запущено больше чем нужно то рекомендуется выключить все контейнеры и запустить только для cinema.
+| Папка | Что внутри |
+|-------|-----------|
+| `cinema/` | тестовый стенд: веб-приложение кинотеатра, база данных и phpMyAdmin в Docker Compose |
+| `test/` | JMeter-сценарии на основе открытого шаблона нагрузочного тестирования WordPress |
+| `test/Add-comment.jmx` | собственный сценарий: добавление комментария к записи блога, 100 потоков |
+| `test/modules/` | переиспользуемые модули: вход, главная страница, просмотр записи, поиск, RSS, комментарии, лайки |
+| `test/*.properties` | параметры нагрузки и окружений (dev, test, qa, stag) |
+| `test/dataset-*/` | тестовые данные в CSV для каждого окружения |
+
+## Типы тестов
+
+- **single-user.jmx** — прогон одним анонимным и одним авторизованным пользователем, чтобы получить базовое время отклика (baseline);
+- **loadtest.jmx** с `loadtest-stag.properties` — нагрузочный тест с заданной интенсивностью действий;
+- **loadtest.jmx** с `stresstest-stag.properties` — стресс-тест с повышенной нагрузкой.
+
+Параметры нагрузки (время разгона, длительность, интенсивность действий, доля анонимных и авторизованных пользователей) задаются в `.properties`-файлах.
+
+## Запуск тестового стенда (кинотеатр)
+
+Нужны Docker и Docker Compose.
+
 ```
- docker stop $(docker ps -a | awk {'print $1'})
+cd cinema
+docker-compose up -d
 ```
 
+После запуска:
 
-##### После запуска контейнера открываю сайт http://localhost:8000/ получаю ошибку Array['errMessage'], что делать?
-1. Открыть http://localhost:8081/ логин admin пароль test
-2. Выбрать база данных database.
-2. Перейти на вкладку SQL.
-2. Открыть скрипт https://github.com/mshegolev/congenial-potato/blob/main/cinema/BD/id11870327_mysite.sql
-3. Скопировать данные из скрипта и вставить в окно SQL.
-4. Выполнить скрипт (нажать кнопку Вперед/Запустить в русской версии или run) Если с первого раза скрипт не выполлниться, то запустить повторно убедившись что подключились к базе данных database.
-5. Открыть сайт http://localhost:8000/client/index.php убедиться что доступен выбор фильмов.
+- сайт: http://localhost:8000
+- панель администратора: http://localhost:8000/admin
+- phpMyAdmin: http://localhost:8081
 
+Если сайт показывает ошибку `Array['errMessage']`, нужно загрузить данные в базу: открыть phpMyAdmin (логин `admin`, пароль `test`), выбрать базу `database` и выполнить скрипт `cinema/BD/id11870327_mysite.sql` на вкладке SQL.
 
+Остановка стенда:
+
+```
+cd cinema
+docker-compose down
+```
+
+## Запуск JMeter-сценариев
+
+Сценарии из папки `test/` рассчитаны на WordPress, развёрнутый локально на `http://localhost`. Адрес сервера задаётся в `.properties`-файлах (`webserver`, `service_port`, `service_protocol`).
+
+Нужно задать переменную окружения `JMETER_PATH` с путём к JMeter и запустить нужный `.bat`-файл из папки `test`, например:
+
+```
+%JMETER_PATH%\bin\jmeter.bat -p single-user-dev.properties -t single-user.jmx
+```
 
